@@ -10,14 +10,14 @@
     <div class="col-lg-3">
       <div class="input-group input-group-lg">
         <span class="input-group-text" id="basic-addon1">Filter By:</span>
-        <input type="text" class="form-control" placeholder="Filter...">
+        <input [(ngModel)]='listFilter' type="text" class="form-control" placeholder="Name to filter...">
       </div>
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div *ngIf='listFilter != ""' class="row mb-3">
     <div class="col-lg-3">
-      <h3>Filtered:</h3>
+      <h3>Filtered By: {{listFilter}}</h3>
     </div>
   </div>
 
@@ -27,7 +27,9 @@
         <thead class="table-light">
           <tr>
             <th scope="col">
-              <button type="button" class="btn btn-primary">Show Images</button>
+              <button (click)='toggleImage()' type="button" class="btn btn-primary mx-auto d-block">
+                {{showImage? 'Hide' : 'Show'}} Images
+              </button>
             </th>
             <th scope="col">Product</th>
             <th scope="col">Code</th>
@@ -36,15 +38,17 @@
             <th scope="col">Rating</th>
           </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let product of products">
-                <td></td>
-                <td>{{product.productName}}</td>
-                <td>{{product.productCode}}</td>
-                <td>{{product.releaseDate}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.starRating}}</td>
-            </tr>
+        <tbody class="align-middle">
+          <tr *ngFor="let product of getProducts()">
+            <td>
+              <img *ngIf="showImage" class="mx-auto d-block" [src]='product.imageUrl' [title]='product.description'>
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode | lowercase}}</td>
+            <td>{{product.releaseDate}}</td>
+            <td>{{product.price | currency:'BRL':'symbol':'1.2-2'}}</td>
+            <td>{{product.starRating}}</td>
+          </tr>
         </tbody>
       </table>
     </div>
