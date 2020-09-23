@@ -1,0 +1,52 @@
+<div class="container-fluid m-3">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2 class="text-primary">Product List</h2>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-lg-3">
+      <div class="input-group input-group-lg">
+        <span class="input-group-text" id="basic-addon1">Filter By:</span>
+        <input type="text" class="form-control" placeholder="Filter...">
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-lg-3">
+      <h3>Filtered:</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <table class="table" *ngIf="products && products.length">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">
+              <button type="button" class="btn btn-primary">Show Images</button>
+            </th>
+            <th scope="col">Product</th>
+            <th scope="col">Code</th>
+            <th scope="col">Available</th>
+            <th scope="col">Price</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td></td>
+                <td>{{product.productName}}</td>
+                <td>{{product.productCode}}</td>
+                <td>{{product.releaseDate}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.starRating}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
