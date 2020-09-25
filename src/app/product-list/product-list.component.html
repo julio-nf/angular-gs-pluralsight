@@ -1,13 +1,13 @@
-<div class="container-fluid m-3">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col">
       <h2 class="text-primary">{{pageTitle}}</h2>
       <hr>
     </div>
   </div>
 
   <div class="row mb-4">
-    <div class="col-lg-3">
+    <div class="col">
       <div class="input-group input-group-lg">
         <span class="input-group-text" id="basic-addon1">Filter By:</span>
         <input [(ngModel)]='listFilter' type="text" class="form-control" placeholder="Name to filter...">
@@ -22,7 +22,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col">
       <table class="table" *ngIf="products && products.length">
         <thead class="table-light">
           <tr>
@@ -43,7 +43,7 @@
             <td>
               <img *ngIf="showImage" class="mx-auto d-block" [src]='product.imageUrl' [title]='product.description'>
             </td>
-            <td>{{product.productName}}</td>
+            <td><a [routerLink]="['/products', product.productId]">{{product.productName}}</a></td>
             <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td>
             <td>{{product.releaseDate}}</td>
             <td>{{product.price | currency:'BRL':'symbol':'1.2-2'}}</td>
